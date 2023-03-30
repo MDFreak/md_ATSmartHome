@@ -2,16 +2,16 @@
 #include "Adafruit_GFX.h"
 #include "Adafruit_ILI9341.h"
 #include <XPT2046_Touchscreen.h>
-#include "TouchEvent.h"
-#include "FS.h"
-#include "SPIFFS.h"
+#include <md_TouchEvent.h>
+#include <FS.h>
+#include <SPIFFS.h>
 #include "WebServer.h"
 //ArduiTouch libraries by Gerald Lechner from github
-#include "AT_Database.h"
+#include <AT_Database.h>
 #include "AT_MessageBuffer.h"
-#include "TouchEvent.h"
+#include "md_TouchEvent.h"
 #include <AT_Display.h>
-#include "AT_Webserver.h"
+#include <AT_Webserver.h>
 
 #include <ESPiLight.h>
 
@@ -122,7 +122,7 @@ void rfCallback(const String &protocol, const String &message, int status,
 
 void setup() {
   Serial.begin(115200);
-  while (!Serial); 
+  while (!Serial);
   Serial.println("Start");
   pinMode(TFT_LED,OUTPUT);
   int heap = ESP.getFreeHeap();
@@ -144,7 +144,7 @@ void setup() {
   //connectWlan("","");
   delay(100);
   if (!initESPNow()) dsp.setStatus("ESP NOW failed");
-  
+
   if (!database.readDevices()) Serial.println("Can not read devices");
   if (!database.readConfig()) Serial.println("Can not read widget config");
   if (!database.readSetup()) Serial.println("Can not read setup");
